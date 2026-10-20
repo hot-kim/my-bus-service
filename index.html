@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>내 버스 시간표</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>🚌 내 버스 시간표</h1>
+    <div class="clock"><strong id="now">--:--:--</strong><span id="today"></span></div>
+  </header>
+
+  <div class="warn" id="warn" hidden>
+    ⚠️ 이 화면에서는 브라우저 저장소를 쓸 수 없어서, 추가·수정한 노선이 새로고침하면 사라져요.
+    로컬 서버(<b>http://localhost:8000</b>)로 열어 주세요.
+  </div>
+
+  <div class="tabs">
+    <button data-day="auto" class="on">오늘</button>
+    <button data-day="weekday">평일</button>
+    <button data-day="weekend">주말·공휴일</button>
+  </div>
+
+  <div id="list"></div>
+  <button class="btn add" id="addBtn">+ 노선 추가</button>
+</div>
+
+<dialog id="dlg">
+  <form method="dialog" id="form">
+    <h2 id="dlgTitle">노선 추가</h2>
+    <div class="row">
+      <div>
+        <label for="fNo">버스 번호</label>
+        <input id="fNo" required placeholder="예: 7016">
+      </div>
+      <div>
+        <label for="fStop">정류장</label>
+        <input id="fStop" required placeholder="예: 집 앞 정류장">
+      </div>
+    </div>
+    <label for="fDir">방면 (선택)</label>
+    <input id="fDir" placeholder="예: 시청 방면">
+    <label for="fWeekday">평일 시간</label>
+    <textarea id="fWeekday" placeholder="07:10, 07:30, 08:05 ..."></textarea>
+    <label for="fWeekend">주말·공휴일 시간</label>
+    <textarea id="fWeekend" placeholder="비워두면 평일 시간과 같게 처리"></textarea>
+    <div class="hint">쉼표, 공백, 줄바꿈으로 구분. 7:05 / 0705 / 07:05 모두 가능.</div>
+    <div class="err" id="err"></div>
+    <div class="dlg-actions">
+      <button type="button" class="btn" id="cancelBtn">취소</button>
+      <button type="submit" class="btn primary">저장</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="confirmDlg">
+  <form method="dialog">
+    <h2>노선 삭제</h2>
+    <p id="confirmMsg"></p>
+    <div class="dlg-actions">
+      <button value="cancel" class="btn">취소</button>
+      <button value="ok" class="btn danger-fill">삭제</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="script.js"></script>
+</body>
+</html>

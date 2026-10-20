@@ -1,0 +1,102 @@
+:root {
+  --bg: #f5f6f8;
+  --card: #ffffff;
+  --text: #1d2330;
+  --muted: #6b7385;
+  --line: #e3e6ec;
+  --accent: #1f6feb;
+  --accent-soft: #e7f0ff;
+  --soon: #d9480f;
+  --past: #b8bec9;
+  --danger: #c92a2a;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12151b;
+    --card: #1b2029;
+    --text: #e6e9ef;
+    --muted: #8d95a6;
+    --line: #2b3240;
+    --accent: #5b9bff;
+    --accent-soft: #1d2a40;
+    --soon: #ff8a4c;
+    --past: #4a5262;
+    --danger: #ff6b6b;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  line-height: 1.5;
+}
+.wrap { max-width: 720px; margin: 0 auto; padding: 24px 16px 64px; }
+header { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-bottom: 20px; }
+h1 { font-size: 1.6rem; margin: 0; }
+.clock { color: var(--muted); font-variant-numeric: tabular-nums; text-align: right; }
+.clock strong { display: block; font-size: 1.4rem; color: var(--text); }
+.tabs { display: flex; gap: 6px; margin-bottom: 16px; }
+.tabs button {
+  border: 1px solid var(--line); background: var(--card); color: var(--muted);
+  padding: 6px 14px; border-radius: 999px; cursor: pointer; font: inherit;
+}
+.tabs button.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+.card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+  padding: 16px; margin-bottom: 14px;
+}
+.route-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.badge {
+  display: inline-block; background: var(--accent); color: #fff; font-weight: 700;
+  padding: 2px 10px; border-radius: 6px; margin-right: 8px;
+}
+.route-name { font-size: 1.15rem; font-weight: 600; }
+.stop { color: var(--muted); font-size: .9rem; margin-top: 2px; }
+.next { text-align: right; white-space: nowrap; }
+.next .mins { font-size: 1.5rem; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+.next .mins.soon { color: var(--soon); }
+.next .sub { font-size: .85rem; color: var(--muted); }
+.times { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.times span {
+  font-variant-numeric: tabular-nums; font-size: .9rem; padding: 3px 8px;
+  border-radius: 6px; background: var(--accent-soft);
+}
+.times span.past { background: transparent; color: var(--past); text-decoration: line-through; }
+.times span.upcoming { background: var(--accent); color: #fff; font-weight: 600; }
+.actions { display: flex; gap: 8px; margin-top: 12px; justify-content: flex-end; }
+.btn {
+  font: inherit; font-size: .85rem; border: 1px solid var(--line); background: transparent;
+  color: var(--muted); padding: 4px 12px; border-radius: 8px; cursor: pointer;
+}
+.btn:hover { color: var(--text); border-color: var(--muted); }
+.btn.danger:hover { color: var(--danger); border-color: var(--danger); }
+.btn.danger-fill { background: var(--danger); border-color: var(--danger); color: #fff; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.add { width: 100%; padding: 12px; border-style: dashed; font-size: 1rem; }
+.empty { text-align: center; color: var(--muted); padding: 32px 0; }
+dialog {
+  border: 1px solid var(--line); border-radius: 14px; background: var(--card); color: var(--text);
+  width: min(520px, calc(100% - 32px)); padding: 20px;
+}
+dialog::backdrop { background: rgba(0,0,0,.45); }
+dialog h2 { margin: 0 0 14px; font-size: 1.2rem; }
+label { display: block; font-size: .85rem; color: var(--muted); margin: 10px 0 4px; }
+input, textarea {
+  width: 100%; font: inherit; color: var(--text); background: var(--bg);
+  border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px;
+}
+textarea { min-height: 70px; resize: vertical; font-variant-numeric: tabular-nums; }
+.hint { font-size: .78rem; color: var(--muted); margin-top: 4px; }
+.row { display: flex; gap: 10px; }
+.row > div { flex: 1; }
+.dlg-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 18px; }
+.warn {
+  background: #fff4e5; color: #8a4b00; border: 1px solid #ffd8a8;
+  border-radius: 10px; padding: 10px 14px; margin-bottom: 16px; font-size: .9rem;
+}
+@media (prefers-color-scheme: dark) {
+  .warn { background: #3a2a14; color: #ffc078; border-color: #5c4019; }
+}
+.err { color: var(--danger); font-size: .85rem; min-height: 1.2em; margin-top: 8px; }
